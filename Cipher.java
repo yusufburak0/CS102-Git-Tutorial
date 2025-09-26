@@ -1,4 +1,7 @@
 // This class is used for encrypting or decrypting strings using character mapping
+
+import java.util.zip.ZipEntry;
+
 public class Cipher   
 {
     // Strings for keeping the alphabets, one for the original letters and the other for the encrypted ones
@@ -15,7 +18,11 @@ public class Cipher
         // for all chars in the input string
         for (int i = 0; i < inputString.length(); i++)   
         {
-
+            for(int x=0; x < ORIGINAL_ALPHABET.length();x++){
+                if(ORIGINAL_ALPHABET.charAt(x) == inputString.charAt(i)){
+                    outputString += CIPHER_ALPHABET.charAt(x);
+                }
+            }
         }
 
         return outputString;
@@ -26,7 +33,10 @@ public class Cipher
         // output string will be collected in this variable, one char at a time
         String outputString = "";
         
-        replaceChar('a',true);
+        for(int i=0; i < inputString.length();i++){
+        outputString += replaceChar(inputString.charAt(i), false);
+
+        }
         
         return outputString;
     }
@@ -42,7 +52,8 @@ public class Cipher
             for (int i = 0; i < ORIGINAL_ALPHABET.length(); i++)   
             {
                 if(ORIGINAL_ALPHABET.charAt(i) == inputChar) {
-
+                    inputChar = CIPHER_ALPHABET.charAt(i);
+                    return inputChar;
                 }
             }
         }
